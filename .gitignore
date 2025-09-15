@@ -1,0 +1,21 @@
+# Virtual envs
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.egg
+*.log
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/

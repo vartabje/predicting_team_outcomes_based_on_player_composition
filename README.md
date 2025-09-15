@@ -26,10 +26,18 @@ brew install python
 
 ---
 
-### 2) Clone the repo
+### 2) Fork and clone the repo
+
+1. Go to the project repo on GitHub: 👉 https://github.com/vartabje/predicting_team_outcomes_based_on_player_composition
+2. In the top-right, click **Fork** to create your own copy under your GitHub account.
+3. Clone **your fork** (replace <your-username> with your GitHub username):
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/<your-username>/predicting_team_outcomes_based_on_player_composition.git
 cd predicting_team_outcomes_based_on_player_composition
+```
+4. (Optional, but recommended) Add the original repo as an upstream remote:
+```bash
+git remote add upstream https://github.com/vartabje/predicting_team_outcomes_based_on_player_composition.git
 ```
 
 ---
@@ -53,7 +61,7 @@ pip install -r requirements.txt
 #### Windows (Command Prompt)
 ```cmd
 python -m venv venv
-venv\Scriptsctivate.bat
+venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 
@@ -65,6 +73,7 @@ pip install -r requirements.txt
 ---
 
 ### 5) Deactivate when done
+
 #### macOS/Linux/PowerShell
 ```bash
 deactivate

@@ -1,85 +1,72 @@
-# Predicting Team Outcomes Based On Player Composition
+## Predicting Team Outcomes Based on Player Composition
 
-Milestone 2 project.
+#### Charles Williams, Jeffrey Vartabedian, and Ryan Peet
 
-## Quick Start
+### Overview
 
-Follow these steps to get the project running on **your computer**, whether you’re on macOS or Windows. Don’t worry if this is your first time using the terminal – just copy/paste the commands in order.
+This project aims to predict Major League Baseball team outcomes (regular season win totals) based on player composition using both unsupervised and supervised machine learning techniques.
+By integrating player performance data, salary information, and demographic context, we explore how team structure and player archetypes contribute to regular season success.
 
----
+### Project Workflow
 
-### 1) Install prerequisites (one-time setup)
-
-#### macOS
-1. Install [Homebrew](https://brew.sh/):
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
-2. Install Python 3 (if not already):
-```bash
-brew install python
-```
-
-#### Windows
-1. Install [Python 3](https://www.python.org/downloads/)
-2. Install [Git for Windows](https://git-scm.com/download/win)
+The project consists of four Jupyter notebooks, which should be executed in the following order:
 
 ---
 
-### 2) Fork and clone the repo
+1. `data_merge.ipynb`
 
-1. Go to the project repo on GitHub: 👉 https://github.com/vartabje/predicting_team_outcomes_based_on_player_composition
-2. In the top-right, click **Fork** to create your own copy under your GitHub account.
-3. Clone **your fork** (replace <your-username> with your GitHub username):
-```bash
-git clone https://github.com/<your-username>/predicting_team_outcomes_based_on_player_composition.git
-cd predicting_team_outcomes_based_on_player_composition
-```
-4. (Optional, but recommended) Add the original repo as an upstream remote:
-```bash
-git remote add upstream https://github.com/vartabje/predicting_team_outcomes_based_on_player_composition.git
-```
+Aggregates and cleans data from multiple sources (Baseball Reference and Spotrac).
+
+Standardizes naming conventions and merges player statistics, salaries, and team-level data.
 
 ---
 
-### 3) Set up the environment
+2. `cluster_feature_selection.ipynb`
 
-#### macOS / Linux
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+Performs feature selection on batting and pitching data using statistical and clustering-based methods (e.g., Predictive Attribute Dependence, Correlation Pruning, PCA).
 
-#### Windows (PowerShell)
-```powershell
-python -m venv venv
-venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-#### Windows (Command Prompt)
-```cmd
-python -m venv venv
-venv\Scripts\activate.bat
-pip install -r requirements.txt
-```
+Prunes redundant features to prepare datasets for unsupervised learning.
 
 ---
 
-### 4) Run the project
-(Add instructions here once scripts or notebooks are ready)
+3. `unsupervised.ipynb`
+
+Uses clustering algorithms (e.g., K-Means, PCA) to identify player archetypes for position players and pitchers.
 
 ---
 
-### 5) Deactivate when done
+4. `supervised.ipynb`
 
-#### macOS/Linux/PowerShell
-```bash
-deactivate
-```
+Builds and evaluates supervised models predicting team success metrics based on aggregated cluster compositions.
 
-#### Windows (Command Prompt)
-```cmd
-venv\Scripts\deactivate.bat
-```
+### Data Sources
+
+#### **Baseball-Reference**
+- **Format Used:** Copy-pasted tabular data stored in .csv files  
+- **Variables of Interest:**
+
+  **Position Players:**  
+  `Name`, `Team`, `Age`, `2B`, `3B`, `HR`, `SO`, `BB`, `IBB`, `HBP`, `BA`, `OPS`, `SB`, `CS`, `SH`, `GIDP`, `WAR`  
+
+  **Pitchers:**  
+  `Name`, `Team`, `Age`, `W`, `ERA`, `ERA+`, `WHIP`, `FIP`, `GF`, `CG`, `SHO`, `SO/BB`, `IBB`, `BB9`, `BK`, `WP`, `HBP`, `WAR`  
+
+- **Records Used:** 31,497 individual player-season records  
+- **Time Period:** 2011–2024  
+
+---
+
+#### **Spotrac**
+- **Format Used:** Copy-pasted tabular data stored in .csv files  
+- **Variables of Interest:**  
+  `Name`, `Team`, `Season`, `Salary`  
+- **Records Used:** 15,382 player salary records  
+- **Time Period:** 2011-2024  
+
+---
+
+#### **Wikipedia (U.S. Census Bureau)**
+- **Format Used:** Copy-pasted tabular data in .csv format  
+- **Variables of Interest:**  
+  `Population (Millions)`  
+- **Records Used:** 420 records  
